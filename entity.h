@@ -1,9 +1,9 @@
-#pragma once
+ï»¿#pragma once
 #include<easyX.h>
 struct Entity
 {
-	void (*draw)(struct Entity*);//»æÖÆÊµÌå
-	void (*update)(struct Entity*);//¸üĞÂÊµÌå
+	void (*draw)(struct Entity*);//ç»˜åˆ¶å®ä½“
+	void (*update)(struct Entity*);//æ›´æ–°å®ä½“
 
 	int x;
 	int y;

@@ -8,9 +8,11 @@ int main()
     initgraph(600, 800);
     cleardevice();
     Hero* temari = new Hero;
-    hero_ini(temari);
-
+    hero_init(temari);
+    hero_draw(temari);
     getchar();
+    hero_destory(temari);
+    delete temari;
     closegraph();
     return 0;
 }

@@ -1,9 +1,12 @@
 #pragma once
 #include <easyX.h>
 #include <graphics.h>
+#include "window.h"
 struct Hero{
 	int x;
 	int y;
+	int width;
+	int height;
 	int life;
 	int update_cnt;
 	IMAGE* img;
@@ -12,3 +15,4 @@ struct Hero{
 void hero_init(struct Hero* h);
 void hero_draw(struct Hero* h);
 void hero_destory(struct Hero* h);
+void hero_move(struct Hero* h);

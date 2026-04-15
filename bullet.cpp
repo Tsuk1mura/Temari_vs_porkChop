@@ -18,21 +18,6 @@ void bullet_draw(struct Bullet* b[]) {
 	}
 	
 }
-void bullet_shoot(struct Bullet* b[],struct Hero* h) {
-	static int cnt = 0;
-	cnt++;
-	if (GetAsyncKeyState(VK_SPACE) && cnt >= 20) {
-		for (int i = 0; i < BULLET_MAX; i++) {
-			if (!b[i]->show) {
-				b[i]->x = h->x + h->width / 2 - b[i]->width / 2;
-				b[i]->y = h->y - b[i]->height;
-				b[i]->show = true;
-				cnt = 0;
-				break;
-			}
-		}
-	}
-}
 void bullet_move(struct Bullet* b[]) {
 	for (int i = 0; i < BULLET_MAX; i++) {
 		if ((b[i]->y + b[i]->height < 0)){
@@ -41,5 +26,10 @@ void bullet_move(struct Bullet* b[]) {
 		if (b[i]->show) {
 			b[i]->y -= BULLET_SPEED;
 		}
+	}
+}
+void bullet_destory(struct Bullet* b[]) {
+	for (int i = 0; i < BULLET_MAX; i++) {
+		delete b[i];
 	}
 }

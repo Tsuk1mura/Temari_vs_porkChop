@@ -31,3 +31,18 @@ void hero_move(struct Hero* h) {
         h->y += PLANE_SPEED;
     }
 }
+void hero_shoot(struct Bullet* b[], struct Hero* h) {
+	static int hero_bullet_cnt = 0;
+	hero_bullet_cnt++;
+	if (GetAsyncKeyState(VK_SPACE) && hero_bullet_cnt >= 20) {
+		for (int i = 0; i < BULLET_MAX; i++) {
+			if (!b[i]->show) {
+				b[i]->x = h->x + h->width / 2 - b[i]->width / 2;
+				b[i]->y = h->y - b[i]->height;
+				b[i]->show = true;
+				hero_bullet_cnt = 0;
+				break;
+			}
+		}
+	}
+}

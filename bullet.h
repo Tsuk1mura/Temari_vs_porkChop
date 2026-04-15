@@ -13,5 +13,5 @@ struct Bullet {
 };
 void bullet_init(struct Bullet* b[]);
 void bullet_draw(struct Bullet* b[]);
-void bullet_shoot(struct Bullet* b[],struct Hero* h);
 void bullet_move(struct Bullet* b[]);
+void bullet_destory(struct Bullet* b[]);

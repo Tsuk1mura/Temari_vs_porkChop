@@ -1,12 +1,11 @@
 #include "hero.h"
-#define PLANE_SPEED 5
 void hero_init(struct Hero* h) {
 	h->x = 270;
 	h->y = 500;
     h->width = 60;
     h->height = 60;
 	h->life = 5;
-	h->img = new IMAGE; // EasyX 分配 IMAGE 内存
+	h->img = new IMAGE;
 	loadimage(h->img, _T("test.jpg"),h->width,h->height);
 }
 

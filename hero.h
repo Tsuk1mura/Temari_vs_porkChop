@@ -2,6 +2,7 @@
 #include <easyX.h>
 #include <graphics.h>
 #include "window.h"
+#define PLANE_SPEED 6
 struct Hero{
 	int x;
 	int y;

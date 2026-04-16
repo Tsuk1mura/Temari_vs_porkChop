@@ -34,8 +34,24 @@ void enemy_draw(struct Enemy* e[]) {
 		}
 	}
 }
-void enemy_shoot(struct Bullet* e_b[], struct Enemy* e[]) {
-
+void enemy_shoot(struct Bullet* e_b[], struct Enemy* e[]) {//todo 实现敌人不同时发射子弹
+	static int enemy_bullet_cnt = 0;
+	enemy_bullet_cnt++;
+	if (enemy_bullet_cnt % 60 == 0) {
+		for (int i = 0; i < ENEMY_MAX; i++) {
+			if (e[i]->show) {
+				for (int j = 0; j < ENEMY_BULLET_MAX; j++) {
+					if (!e_b[j]->show) {
+						e_b[j]->x = e[i]->x + e[i]->width / 2 - e_b[j]->width / 2;
+						e_b[j]->y = e[i]->y +e[i]->height + e_b[j]->height;
+						e_b[j]->show = true;
+						enemy_bullet_cnt = 0;
+						break;
+					}
+				}
+			}
+		}
+	}
 }
 void enemy_move(struct Enemy* e[]) {
 	for (int i = 0; i < ENEMY_MAX; i++) {
@@ -47,8 +63,8 @@ void enemy_move(struct Enemy* e[]) {
 		}
 	}
 }
-void enemy_crush_bullet(struct Bullet* b[], struct Enemy* e[]) {
-	for (int i = 0; i < BULLET_MAX; i++) {
+void enemy_destoryed(struct Bullet* b[], struct Enemy* e[]) {
+	for (int i = 0; i < HERO_BULLET_MAX; i++) {
 		if (b[i]->show) {
 			for (int j = 0; j < ENEMY_MAX; j++) {
 				if (e[j]->show) {
@@ -66,7 +82,7 @@ void enemy_crush_bullet(struct Bullet* b[], struct Enemy* e[]) {
 		}
 	}
 }
-void enemy_destory(struct Enemy* e[]) {
+void enemy_delete(struct Enemy* e[]) {
 	for (int i = 0; i < ENEMY_MAX; i++) {
 		delete e[i]->img;
 		delete e[i];

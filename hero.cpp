@@ -1,32 +1,39 @@
 #include "hero.h"
 extern int score;
-void hero_init(struct Hero* h) {
+void Hero::hero_init(Hero* h)
+{
 	h->x = 270;
 	h->y = 500;
-    h->width = 60;
-    h->height = 60;
+	h->width = 60;
+	h->height = 60;
 	h->life = 5;
 	h->img = new IMAGE;
-	loadimage(h->img, _T("test.jpg"),h->width,h->height);
+	loadimage(h->img, _T("test.jpg"), h->width, h->height);
 }
-void hero_draw(struct Hero* h) {
+
+void Hero::hero_draw(Hero* h)
+{
 	putimage(h->x, h->y, h->img);
 }
-void hero_move(struct Hero* h) {
-    if (GetAsyncKeyState('A') && h->x > 0) {
-        h->x -= PLANE_SPEED;
-    }
-    if (GetAsyncKeyState('D') && h->x < WIDTH - h->width) {
-        h->x += PLANE_SPEED;
-    }
-    if (GetAsyncKeyState('W') && h->y > 0) {
-        h->y -= PLANE_SPEED;
-    }
-    if (GetAsyncKeyState('S') && h->y < HEIGHT - h->height) {
-        h->y += PLANE_SPEED;
-    }
+
+void Hero::hero_move(Hero* h)
+{
+	if (GetAsyncKeyState('A') && h->x > 0) {
+		h->x -= PLANE_SPEED;
+	}
+	if (GetAsyncKeyState('D') && h->x < WIDTH - h->width) {
+		h->x += PLANE_SPEED;
+	}
+	if (GetAsyncKeyState('W') && h->y > 0) {
+		h->y -= PLANE_SPEED;
+	}
+	if (GetAsyncKeyState('S') && h->y < HEIGHT - h->height) {
+		h->y += PLANE_SPEED;
+	}
 }
-void hero_shoot(struct Bullet* b[], struct Hero* h) {
+
+void Hero::hero_shoot(Bullet* b[], Hero* h)
+{
 	static int hero_bullet_cnt = 0;
 	hero_bullet_cnt++;
 	if (GetAsyncKeyState(VK_SPACE) && hero_bullet_cnt >= 20) {
@@ -41,7 +48,8 @@ void hero_shoot(struct Bullet* b[], struct Hero* h) {
 		}
 	}
 }
-void hero_destoryed(Bullet* e_b[], Hero* h, Enemy* e[])
+
+void Hero::hero_destoryed(Bullet* e_b[], Hero* h, Enemy* e[])
 {
 	for (int i = 0; i < ENEMY_BULLET_MAX; i++) {
 		if (e_b[i]->show) {
@@ -70,7 +78,9 @@ void hero_destoryed(Bullet* e_b[], Hero* h, Enemy* e[])
 		}
 	}
 }
-void hero_delete(struct Hero* h) {
+
+void Hero::hero_delete(Hero* h)
+{
 	delete h->img;
 	delete h;
 }

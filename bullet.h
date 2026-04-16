@@ -5,15 +5,17 @@
 #define HERO_BULLET_MAX 20
 #define ENEMY_BULLET_MAX 20
 #define BULLET_SPEED 10
-struct Bullet {
+class Bullet {
+public:
 	int x;
 	int y;
 	int width;
 	int height;
 	bool show;
+	static void bullet_init(Bullet* b[]);
+	static void bullet_draw(Bullet* b[]);
+	static void hero_bullet_move(Bullet* b[]);
+	static void enemy_bullet_move(Bullet* e_b[]);
+	static void bullet_delete(Bullet* b[]);
 };
-void bullet_init(struct Bullet* b[]);
-void bullet_draw(struct Bullet* b[]);
-void hero_bullet_move(struct Bullet* b[]);
-void enemy_bullet_move(struct Bullet* e_b[]);
-void bullet_delete(struct Bullet* b[]);
+

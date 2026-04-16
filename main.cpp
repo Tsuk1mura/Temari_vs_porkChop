@@ -14,39 +14,39 @@ int main()
     initgraph(WIDTH, HEIGHT);
     BeginBatchDraw();
 
-    Hero* temari = new Hero;
-    Bullet* hero_bullets[HERO_BULLET_MAX];
-    Bullet* enemy_bullets[ENEMY_BULLET_MAX];
-    Enemy* enemys[ENEMY_MAX];
-    hero_init(temari);
-    bullet_init(hero_bullets);
-    bullet_init(enemy_bullets);
-    enemy_init(enemys);
-
     DWORD  frame_start, frame_time;
     const int FPS = 120;          
     const int FRAME_DELAY = 1000 / FPS;
 
+    Hero* temari = new Hero;
+    Bullet* hero_bullets[HERO_BULLET_MAX];
+    Bullet* enemy_bullets[ENEMY_BULLET_MAX];
+    Enemy* enemys[ENEMY_MAX];
+
+    Hero::hero_init(temari);
+    Bullet::bullet_init(hero_bullets);
+    Bullet::bullet_init(enemy_bullets);
+    Enemy::enemy_init(enemys);
     while (1) {
         frame_start = GetTickCount();
 
         if (GetAsyncKeyState(VK_ESCAPE)) break; // 按ESC退出
         cleardevice();
         if(score){
-            hero_move(temari);
-            hero_shoot(hero_bullets, temari);
-            hero_bullet_move(hero_bullets);
-            hero_destoryed(enemy_bullets, temari,enemys);
-            enemy_create(enemys);
-            enemy_move(enemys);
-            enemy_shoot(enemy_bullets, enemys);
-            enemy_bullet_move(enemy_bullets);
-            enemy_destoryed(hero_bullets, enemys);
+            Hero::hero_move(temari);
+            Hero::hero_shoot(hero_bullets, temari);
+            Bullet::hero_bullet_move(hero_bullets);
+            Hero::hero_destoryed(enemy_bullets, temari,enemys);
+            Enemy::enemy_create(enemys);
+            Enemy::enemy_move(enemys);
+            Enemy::enemy_shoot(enemy_bullets, enemys);
+            Bullet::enemy_bullet_move(enemy_bullets);
+            Enemy::enemy_destoryed(hero_bullets, enemys);
         }
-        hero_draw(temari);
-        bullet_draw(hero_bullets);
-        enemy_draw(enemys);
-        bullet_draw(enemy_bullets);
+        Hero::hero_draw(temari);
+        Bullet::bullet_draw(hero_bullets);
+        Enemy::enemy_draw(enemys);
+        Bullet::bullet_draw(enemy_bullets);
         setbkmode(TRANSPARENT);
         settextcolor(WHITE);
         TCHAR str[50];
@@ -67,9 +67,9 @@ int main()
         }
         
     }
-    hero_delete(temari);
-    bullet_delete(hero_bullets);
-    enemy_delete(enemys);
+    Hero::hero_delete(temari);
+    Bullet::bullet_delete(hero_bullets);
+    Enemy::enemy_delete(enemys);
     closegraph();
     return 0;
 }

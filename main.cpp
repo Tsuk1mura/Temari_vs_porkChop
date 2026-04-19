@@ -150,6 +150,7 @@ int main()
                 outtextxy(WIDTH / 2 - 60, 200, _T("RESTART"));
                 outtextxy(WIDTH / 2 - 90, 300, _T("BACKTOMENU"));
                 outtextxy(WIDTH / 2 - 50, 400, _T("EXIXT"));
+                outtextxy(WIDTH / 2 - 110, 100, _T("(ESC返回战斗)"));
             }
             if (witch_arrow[1][0]) {
                 arrow.x = WIDTH / 2 -125;

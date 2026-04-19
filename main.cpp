@@ -60,6 +60,11 @@ int main()
             outtextxy(WIDTH / 2 - 50, 200, _T("START"));
             outtextxy(WIDTH / 2 - 50, 300, _T("STORY"));
             outtextxy(WIDTH / 2 - 50, 400, _T("EXIXT"));
+            settextstyle(20, 0, _T("宋体"));
+            outtextxy(WIDTH / 2 - 100, 500, _T("按上下方向键以选择"));
+            outtextxy(WIDTH / 2 - 120, 550, _T("按空格键以确认(发射子弹)"));
+            outtextxy(WIDTH / 2 - 80, 600, _T("移动手毬:WASD"));
+            settextstyle(30, 0, _T("宋体"));
             //todo 选择箭头绘制
             if (witch_arrow[0][0]) {
                 arrow.x = WIDTH / 2 - 85;
